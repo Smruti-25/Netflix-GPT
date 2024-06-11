@@ -2,11 +2,13 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div>
-      <img src = "https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940"
-      alt = "logo"/>
+    <div className="absolute">
+      <img className='w-36'
+        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        alt="logo"
+      />
     </div>
-  )
+  );
 }
 
 export default Header
