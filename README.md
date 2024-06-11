@@ -1,4 +1,4 @@
--Features
+# Features
 - Login/Sign Up
   - Sign In / Sign up form
   - Redirect to Explore page
