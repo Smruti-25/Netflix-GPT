@@ -1,8 +1,13 @@
 import React from 'react'
+import Login from './Login'
+import Explore from './Explore'
 
 const Body = () => {
   return (
-    <div>Body</div>
+    <div>
+      <Login />
+      <Explore />
+    </div>
   )
 }
 
