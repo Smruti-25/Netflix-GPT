@@ -9,7 +9,7 @@ const Login = () => {
   }
 
   const handleButtonClick = () => {
-
+    //validate the user
   }
 
   return (
