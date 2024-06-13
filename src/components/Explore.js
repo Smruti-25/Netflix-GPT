@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from './Header'
 
 const Explore = () => {
   return (
-    <div>Explore</div>
+    <div>
+      <Header />
+    </div>
   )
 }
 

@@ -1,10 +1,17 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidEmail, checkValidName, checkValidPassword } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -18,17 +25,75 @@ const Login = () => {
     //validate the user
     const validMail = checkValidEmail(email.current.value);
     const validPassword = checkValidPassword(password.current.value);
-    const validFullName = checkValidName(fullName.current.value);
+    const validFullName = checkValidName(fullName?.current?.value);
+
+    let errorMessage = null;
     if(!validMail || !validPassword){
-      setErrorMessage("Email or Password is not valid");
+      errorMessage = "Email or Password is not valid";
     }
-    if (!validFullName) {
-      setErrorMessage("Please enter a valid name");
+    if(!validFullName && !isSignInForm) {
+      errorMessage = "Please enter a valid name";
+    }
+    setErrorMessage(errorMessage);
+    if(errorMessage) return;
+
+    if(!isSignInForm){
+      //sign up logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullName?.current?.value,
+            photoURL:
+              "https://occ-0-3216-2186.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABUSntF8sS3XaxlL4kbgMzXhSHilR2oaXKyypWY_hXouAnTxBxaOigBfg-IX5z8rXMp4XyRdumCARSopncAJ3KG2eC7dwaI0.png?r=64f",
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL,
+                })
+              );
+              navigate("/explore");
+            })
+            .catch((error) => {
+              console.log(error);
+              setErrorMessage(error.message);
+            });
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          setErrorMessage(errorCode, "-", errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log({user});
+          navigate("/explore");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode, "-", errorMessage);
+        });
     }
   }
 
   return (
     <div>
+      {/* {alert(
+        // "Test Credentials: Email - test123@gmail.com Password- Password@123"
+      )} */}
       <Header />
       <div className="absolute">
         <img
@@ -42,7 +107,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
-          ref = {fullName}
+            ref={fullName}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-gray-700"
