@@ -86,9 +86,9 @@ const Login = () => {
 
   return (
     <div>
-      {/* {alert(
+      {alert(
         // "Test Credentials: Email - test123@gmail.com Password- Password@123"
-      )} */}
+      )}
       <Header />
       <div className="absolute">
         <img src={BACKGROUD_IMAGE} alt="Background" />
