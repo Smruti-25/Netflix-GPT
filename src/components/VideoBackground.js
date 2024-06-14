@@ -23,6 +23,13 @@ const VideoBackground = (movieId) => {
   return (
     <div>
       <h1>VideoBackground Component</h1>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Kdr5oedn7q8?si=YVO9Tt4RsAQA6hsZ"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      ></iframe>
     </div>
   );
 };
