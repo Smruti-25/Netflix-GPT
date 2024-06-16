@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BACKGROUD_IMAGE, TMDB_API_OPTIONS } from "../utils/constants";
 import language from "../utils/languageConstants";
 import { useRef } from "react";
 import openai from "../utils/openai";
 import Error from "./Error";
+import { addGPTMovieResults, addGPTMovieResultsData } from "../utils/gptSlice";
 
 const GPTSearchBar = () => {
+  const dispatch = useDispatch();
   const searchText = useRef(null);
 
   const selectedLanguage = useSelector((store) => store.config.language);
@@ -49,6 +51,7 @@ const GPTSearchBar = () => {
     const promiseArray = gptResults.map((movieName) => searchMovieTMDB(movieName));
     const tmdbData = await Promise.all(promiseArray);
     console.log({tmdbData});
+    dispatch(addGPTMovieResults({movieResults: gptResults, movieResultsData: tmdbData}));
   }
 
   return (
