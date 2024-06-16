@@ -1,13 +1,17 @@
+import { BACKGROUD_IMAGE } from '../utils/constants';
 import GPTSearchBar from './GPTSearchBar';
 import GPTSearchResults from './GPTSearchResults';
 
 const GPTSearch = () => {
-return(
+return (
   <div>
+    <div className="fixed -z-10">
+      <img src={BACKGROUD_IMAGE} alt="Background Image" />
+    </div>
     <GPTSearchBar />
     <GPTSearchResults />
   </div>
-)
+);
 }
 
 export default GPTSearch;

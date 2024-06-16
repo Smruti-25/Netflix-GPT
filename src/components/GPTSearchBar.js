@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { BACKGROUD_IMAGE, TMDB_API_OPTIONS } from "../utils/constants";
+import { TMDB_API_OPTIONS } from "../utils/constants";
 import language from "../utils/languageConstants";
 import { useRef } from "react";
 import openai from "../utils/openai";
@@ -56,9 +56,6 @@ const GPTSearchBar = () => {
 
   return (
     <div>
-      <div className="absolute -z-10">
-        <img src={BACKGROUD_IMAGE} alt="Background" />
-      </div>
       <div className="pt-[10%] flex justify-center">
         <form
           className="w-1/2 bg-black grid grid-cols-12"
