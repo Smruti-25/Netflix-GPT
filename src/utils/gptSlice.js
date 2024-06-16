@@ -4,11 +4,15 @@ const gptSlice = createSlice({
   name: "gpt",
   initialState: {
     showGPTSearch: false,
+    gptMovieResults: [],
   },
   reducers: {
     toggleGPTSearchView: (state) => {
       state.showGPTSearch = !state.showGPTSearch;
-    }
+    },
+    addGPTMovieResults: (state, action) => {
+      state.gptMovieResults = action.payload
+    },
   }
 });
 
