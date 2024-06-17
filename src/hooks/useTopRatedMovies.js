@@ -4,10 +4,6 @@ import { addTopRatedMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useTopRatedMovies = () => {
-  useEffect(() => {
-    topRatedMovies && getTopRatedMovies();
-  }, []);
-
   const dispatch = useDispatch();
 
   const topRatedMovies = useSelector(
@@ -19,6 +15,10 @@ const useTopRatedMovies = () => {
     const json = await data.json();
     dispatch(addTopRatedMovies(json.results));
   };
+
+  useEffect(() => {
+    !topRatedMovies && getTopRatedMovies();
+  }, []);
 };
 
 export default useTopRatedMovies;

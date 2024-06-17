@@ -4,12 +4,6 @@ import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useNowPlayingMovies = () => {
-  useEffect(() => {
-    if(!nowPlayingMovies){
-      getNowPlayingMovies();
-    }
-  }, []);
-
   const dispatch = useDispatch();
 
   const nowPlayingMovies = useSelector(
@@ -21,6 +15,12 @@ const useNowPlayingMovies = () => {
     const json = await data.json();
     dispatch(addNowPlayingMovies(json.results));
   };
+
+  useEffect(() => {
+    if (!nowPlayingMovies) {
+      getNowPlayingMovies();
+    }
+  }, []);
 };
 
 export default useNowPlayingMovies;

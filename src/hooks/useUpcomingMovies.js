@@ -4,19 +4,20 @@ import { addUpcomingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useUpcomingMovies = () => {
-  useEffect(() => {
-    upcomingMovies && getUpcomingMovies();
-  }, []);
-
   const dispatch = useDispatch();
 
    const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
+   console.log({ upcomingMovies });
 
   const getUpcomingMovies = async () => {
     const data = await fetch(UPCOMING_URL, TMDB_API_OPTIONS);
     const json = await data.json();
     dispatch(addUpcomingMovies(json.results));
   };
+
+   useEffect(() => {
+     !upcomingMovies && getUpcomingMovies();
+   }, []);
 };
 
 export default useUpcomingMovies;

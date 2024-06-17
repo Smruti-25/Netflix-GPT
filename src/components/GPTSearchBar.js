@@ -2,9 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TMDB_API_OPTIONS } from "../utils/constants";
 import language from "../utils/languageConstants";
 import { useRef } from "react";
-import openai from "../utils/openai";
-import Error from "./Error";
-import { addGPTMovieResults, addGPTMovieResultsData } from "../utils/gptSlice";
+import { addGPTMovieResults } from "../utils/gptSlice";
 
 const GPTSearchBar = () => {
   const dispatch = useDispatch();
@@ -28,11 +26,11 @@ const GPTSearchBar = () => {
   const handleGPTSearchClick = async() => {
     console.log(searchText.current.value);
 
-    const query =
-      "Act as a movie recommendation system and recommend some movies for the query" +
-      searchText.current.value + ". Only give me names of 10 movies, comma seperated like the example result ahead. Example Result: The Godfather, Shawshank Redemption, James Bond, The Dark Knight Rises, Oppenheimer"
-
       //todo figure out the billing
+    // const query =
+    //   "Act as a movie recommendation system and recommend some movies for the query" +
+    //   searchText.current.value +
+    //   ". Only give me names of 10 movies, comma seperated like the example result ahead. Example Result: The Godfather, Shawshank Redemption, James Bond, The Dark Knight Rises, Oppenheimer";
     // const gptResults = await openai.chat.completions.create({
     //   messages: [{ role: "user", content: query+ " "+searchText.current.value }],
     //   model: "gpt-3.5-turbo",
