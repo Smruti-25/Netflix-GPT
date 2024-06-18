@@ -7,7 +7,6 @@ const useUpcomingMovies = () => {
   const dispatch = useDispatch();
 
    const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
-   console.log({ upcomingMovies });
 
   const getUpcomingMovies = async () => {
     const data = await fetch(UPCOMING_URL, TMDB_API_OPTIONS);
