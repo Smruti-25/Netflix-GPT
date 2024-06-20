@@ -14,6 +14,7 @@ export const TMDB_API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
+    // eslint-disable-next-line no-useless-concat
     Authorization: "Bearer"+" "+ process.env.REACT_APP_TMDB_KEY,
   },
 };

@@ -26,7 +26,7 @@ const Header = () => {
             photoURL,
           })
         );
-        navigate("/explore")
+        navigate("/explore");
       } else {
         // User is signed out
         dispatch(removeUser());
@@ -35,6 +35,7 @@ const Header = () => {
     });
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSignOut = () => {
