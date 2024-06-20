@@ -84,9 +84,6 @@ const Login = () => {
 
   return (
     <div>
-      {/* {alert(
-        // "Test Credentials: Email - test123@gmail.com Password- Password@123"
-      )} */}
       <Header />
       <div className="absolute">
         <img
@@ -128,10 +125,25 @@ const Login = () => {
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
-          {isSignInForm
-            ? "New to Netflix? Sign Up Now"
-            : "Already a User? Sign In Here"}
+          {isSignInForm ? (
+            <>
+              <>New to Netflix? </>
+              <span className="text-red-800 font-bold">Sign Up</span> <>Now</>
+            </>
+          ) : (
+            <>
+              Already a User? Sign In
+              <span className="text-red-800 font-bold"> Here</span>
+            </>
+          )}
         </p>
+        {isSignInForm && (
+          <>
+            <p>For demo purposes:</p>
+            <p>Email: test123@gmail.com</p>
+            <p>Password: Password@123</p>
+          </>
+        )}
       </form>
     </div>
   );
