@@ -139,9 +139,9 @@ const Login = () => {
         </p>
         {isSignInForm && (
           <>
-            <p>For demo purposes:</p>
+            {/* <p>For demo purposes:</p>
             <p>Email: test123@gmail.com</p>
-            <p>Password: Password@123</p>
+            <p>Password: Password@123</p> */}
           </>
         )}
       </form>
