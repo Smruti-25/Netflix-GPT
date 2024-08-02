@@ -19,6 +19,8 @@ const Login = () => {
   const fullName = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const testEmail = "test123@gmail.com";
+  const testPassword = "Password@123";
 
   const handleButtonClick = () => {
     //validate the user
@@ -105,14 +107,16 @@ const Login = () => {
           />
         )}
         <input
+          value={testEmail}
           ref={email}
           type="text"
           placeholder="Email Address"
           className="p-4 my-4 w-full bg-gray-700"
         />
         <input
+          value={testPassword}
           ref={password}
-          type="text"
+          type="password"
           placeholder={isSignInForm ? "Enter Password" : "Set Password"}
           className="p-4 my-4 w-full bg-gray-700"
         />
